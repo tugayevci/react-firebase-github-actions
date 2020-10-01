@@ -5,13 +5,13 @@ import "firebase/firestore";
 import "firebase/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+// import { useCollectionData } from "react-firebase-hooks/firestore";
 import firebaseconfig from "./firebaseconfig";
 
 firebase.initializeApp(firebaseconfig);
 
 const auth = firebase.auth();
-const firestore = firebase.firestore();
+// const firestore = firebase.firestore();
 
 function App() {
   const [user] = useAuthState(auth);
