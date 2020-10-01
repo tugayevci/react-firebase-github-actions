@@ -20,6 +20,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h4>Money Talks</h4>
+        <SignOut />
       </header>
       <section>{user ? <ChatRoom /> : <SignIn />}</section>
     </div>
@@ -110,7 +111,7 @@ function ChatMessage(props: any) {
 
   return (
     <div className={`message ${messageClass}`}>
-      <img src={photoURL}></img>
+      <img alt={"user"} src={photoURL}></img>
       <p>{text}</p>
     </div>
   );
