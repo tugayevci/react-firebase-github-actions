@@ -44,7 +44,7 @@ function ChatRoom() {
   const dummy = useRef(null);
 
   const messagesRef = firestore.collection("messages");
-  const query = messagesRef.orderBy("createdAt").limit(25);
+  const query = messagesRef.orderBy("createdAt", "desc").limit(25);
   const [messages] = useCollectionData(query, { idField: "id" });
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function ChatRoom() {
   return (
     <>
       <main>
-        {messages?.map((msg) => (
+        {messages?.reverse().map((msg) => (
           <ChatMessage
             //@ts-ignore
             key={msg.id}
@@ -108,6 +108,9 @@ function ChatMessage(props: any) {
   const { text, uid, photoURL } = props.message;
 
   const messageClass = uid === auth.currentUser?.uid ? "sent" : "received";
+
+  console.log("message", props.message);
+  
 
   return (
     <div className={`message ${messageClass}`}>
