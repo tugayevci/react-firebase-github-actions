@@ -76,13 +76,8 @@ function ChatMessageForm(props: any) {
   const sendMessage = async (e: any) => {
     e.preventDefault();
     const messagesRef = firestore.collection("messages");
-
     //@ts-ignore
     const { uid, photoURL } = auth.currentUser;
-
-    console.log("uid", uid);
-    console.log("photoURL", photoURL);
-
     await messagesRef.add({
       text: message,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -106,12 +101,9 @@ function ChatMessageForm(props: any) {
 
 function ChatMessage(props: any) {
   const { text, uid, photoURL } = props.message;
-
-  const messageClass = uid === auth.currentUser?.uid ? "sent" : "received";
-
-  console.log("message", props.message);
+  console.log("photoUrl", photoURL);
   
-
+  const messageClass = uid === auth.currentUser?.uid ? "sent" : "received";  
   return (
     <div className={`message ${messageClass}`}>
       <img alt={"user"} src={photoURL}></img>
@@ -119,5 +111,6 @@ function ChatMessage(props: any) {
     </div>
   );
 }
+
 
 export default App;
